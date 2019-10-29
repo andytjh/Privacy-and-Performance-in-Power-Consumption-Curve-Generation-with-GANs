@@ -269,7 +269,7 @@ for epoch in range(n_epochs):
         
         # Plotting artificially generated samples, empirical distributions of the indicators and saving plots to tensorboard.
         
-        if (((i+1)*batch_size) % 1200) == 0:
+        if (((i+1)*batch_size) % 800) == 0:
             
             generated_samples = torch.cat(generated_samples)
             generated_samples = inverse_trans(generated_samples,alpha,save_max)
