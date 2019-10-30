@@ -29,10 +29,10 @@ parser.add_argument('--eta',type=float,default=0.12,help='Weight of the sum betw
 parser.add_argument('--alpha',type=float,default=300,help='Alpha parameter for pre-processing.')
 parser.add_argument('--grad_norm_reg',type=bool,default=False,help='If gradient-norm regularization is applied.')
 parser.add_argument('--gamma',type=float,default=0.01,help='Rate for gradient-norm regularization.')
-parser.add_argument('--n_epochs',type=int,default=40,help='Number of epochs for training.')
-parser.add_argument('--batch_size',type=int,default=80,help='Batch size.')
+parser.add_argument('--n_epochs',type=int,default=150,help='Number of epochs for training.')
+parser.add_argument('--batch_size',type=int,default=20,help='Batch size.')
 parser.add_argument('--lr_g',type=float,default=0.0001,help='Learning rate for the generator.')
-parser.add_argument('--lr_d',type=float,default=0.0001,help='Learning rate for the discriminator.')
+parser.add_argument('--lr_d',type=float,default=0.00001,help='Learning rate for the discriminator.')
 parser.add_argument('--n_critic',type=int,default=5,help='Number of discriminator steps per generator step.')
 
 opt = parser.parse_args()
