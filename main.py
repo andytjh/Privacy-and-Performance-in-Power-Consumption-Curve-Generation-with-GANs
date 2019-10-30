@@ -33,7 +33,7 @@ parser.add_argument('--n_epochs',type=int,default=150,help='Number of epochs for
 parser.add_argument('--batch_size',type=int,default=20,help='Batch size.')
 parser.add_argument('--lr_g',type=float,default=0.0001,help='Learning rate for the generator.')
 parser.add_argument('--lr_d',type=float,default=0.00001,help='Learning rate for the discriminator.')
-parser.add_argument('--n_critic',type=int,default=5,help='Number of discriminator steps per generator step.')
+parser.add_argument('--n_critic',type=int,default=3,help='Number of discriminator steps per generator step.')
 
 opt = parser.parse_args()
 
