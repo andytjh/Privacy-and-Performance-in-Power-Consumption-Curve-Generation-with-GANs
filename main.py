@@ -29,11 +29,12 @@ parser.add_argument('--eta',type=float,default=0.12,help='Weight of the sum betw
 parser.add_argument('--alpha',type=float,default=300,help='Alpha parameter for pre-processing.')
 parser.add_argument('--grad_norm_reg',type=bool,default=False,help='If gradient-norm regularization is applied.')
 parser.add_argument('--gamma',type=float,default=0.01,help='Rate for gradient-norm regularization.')
-parser.add_argument('--n_epochs',type=int,default=150,help='Number of epochs for training.')
+parser.add_argument('--n_epochs',type=int,default=140,help='Number of epochs for training.')
 parser.add_argument('--batch_size',type=int,default=20,help='Batch size.')
 parser.add_argument('--lr_g',type=float,default=0.0001,help='Learning rate for the generator.')
 parser.add_argument('--lr_d',type=float,default=0.00001,help='Learning rate for the discriminator.')
 parser.add_argument('--n_critic',type=int,default=3,help='Number of discriminator steps per generator step.')
+parser.add_argument('--n_parts',type=int,default=5,help='Split the Universe in n_parts')
 
 opt = parser.parse_args()
 
@@ -54,10 +55,11 @@ writer = SummaryWriter(saving_dir+'/Tensorboard/exp'+str(run))
 
 # First 'step' elements of the list will be selected as training data
 
+n_parts = opt.n_parts
 data_dir = "./DataSets"
 dir_list = os.listdir(data_dir)
 random.shuffle(dir_list)
-step = int(len(dir_list)/10.0)
+step = int(len(dir_list)/n_parts)
 
 # Saving the training set suffle
 
@@ -367,7 +369,7 @@ discriminator.eval()
 norms_per_subset = []
 scores_per_subset = []
 
-for i in range(10): 
+for i in range(n_parts): 
     
     norm = []
     scores = []
@@ -561,7 +563,7 @@ np.save(ranksC_score_directory+'/RankpClient'+str(run)+'.npy',score_arb_client_r
 
 AII_list = []
 
-for i in range(10): 
+for i in range(n_parts): 
     examples = np.empty([0,336])
     generated_list = []
     for j in range(step): 
